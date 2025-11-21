@@ -27,13 +27,14 @@ services:
     ports:
       # PARA ACCESO REMOTO
       # COMENTAR SI SOLO SE ACCEDE DESDE EL BACKEND EN LA MISMA RED
-      # Formate: "PUERTO_HOST:PUERTO_CONTAINER"
+      # Format: "PUERTO_HOST:PUERTO_CONTAINER"
       - "3306:3306"
 
     networks:
+      # Red registrada en la lista de redes nombradas hasta abajo
       - backend_network
 
-    # verifica cada 5s si la bd responde
+    # verifica cada 10s si la bd responde
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p${MYSQL_ROOT_PASSWORD}"]
       interval: 10s
@@ -41,5 +42,6 @@ services:
       retries: 5
       start_period: 30s
 networks:
+  # red para acceso desde otros contenedores
   backend_network:
     driver: bridge
