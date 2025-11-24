@@ -28,7 +28,8 @@ services:
       # PARA ACCESO REMOTO
       # COMENTAR SI SOLO SE ACCEDE DESDE EL BACKEND EN LA MISMA RED
       # Format: "PUERTO_HOST:PUERTO_CONTAINER"
-      - "3306:3306"
+      # Limitamos la escucha a solo conexiones locales
+      - "127.0.0.1:3306:3306" 
 
     networks:
       # Red registrada en la lista de redes nombradas hasta abajo
