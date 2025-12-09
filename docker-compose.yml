@@ -2,7 +2,7 @@ services:
   db:
 
     # imagen de mysql
-    image: mysql:8.0.36
+    image: mysql:8.4
 
 
     container_name: mysql_prod
